@@ -14,21 +14,23 @@ public class MainActivity extends AppCompatActivity {
 
     int randomNumber;
 
-    public void guessFunction(View view){
+    public void guessFunction(View view) {
         Log.i("Info", Integer.toString(randomNumber));
 
         EditText et_guess = (EditText) findViewById(R.id.et_guess);
-        String currentGuess = et_guess.getText().toString();
-        int currentGuessNumber = (int) Double.parseDouble(currentGuess);
+        int currentGuessNumber = (int) Double.parseDouble(et_guess.getText().toString());
         Log.i("Guessed Number", String.valueOf(currentGuessNumber));
+        String message;
 
-        if (currentGuessNumber == randomNumber){
-            Toast.makeText(this, "You got it!", Toast.LENGTH_SHORT).show();
-        } else if (currentGuessNumber > randomNumber){
-            Toast.makeText(this, "Guess lower", Toast.LENGTH_SHORT).show();
+        if (currentGuessNumber == randomNumber) {
+            message = "You got it!";
+        } else if (currentGuessNumber > randomNumber) {
+            message = "Lower";
         } else {
-            Toast.makeText(this, "Guess higher", Toast.LENGTH_SHORT).show();
+            message = "higher";
         }
+
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
     @Override
