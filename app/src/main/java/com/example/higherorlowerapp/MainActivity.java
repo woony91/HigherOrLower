@@ -8,19 +8,23 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.Random;
+
 public class MainActivity extends AppCompatActivity {
 
+    int randomNumber;
+
     public void guessFunction(View view){
-        Log.i("Info", "Button is clicked!");
+        Log.i("Info", Integer.toString(randomNumber));
 
         EditText et_guess = (EditText) findViewById(R.id.et_guess);
         String currentGuess = et_guess.getText().toString();
         int currentGuessNumber = (int) Double.parseDouble(currentGuess);
         Log.i("Guessed Number", String.valueOf(currentGuessNumber));
 
-        if (currentGuessNumber == 13){
+        if (currentGuessNumber == randomNumber){
             Toast.makeText(this, "You got it!", Toast.LENGTH_SHORT).show();
-        } else if (currentGuessNumber > 13){
+        } else if (currentGuessNumber > randomNumber){
             Toast.makeText(this, "Guess lower", Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(this, "Guess higher", Toast.LENGTH_SHORT).show();
@@ -31,5 +35,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Random rand = new Random();
+
+        randomNumber = rand.nextInt(20) + 1;
     }
 }
